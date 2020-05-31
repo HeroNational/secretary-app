@@ -19,5 +19,9 @@
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/message.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/icon.css">
 <link rel="shortcut icon" href="../../images/workspace1_122059.png" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="../../css/dist/components/dropdown.css">
+<link rel="stylesheet" type="text/css" href="../../css/dist/components/card.css">
+<link rel="stylesheet" type="text/css" href="../../css/dist/components/label.css">
+<link rel="stylesheet" type="text/css" href="../../css/dist/components/table.css">
 <script scr="../../css/dist/jquery3.4.1.js"></script>
 <script src="../../js/horloge.js"></script>

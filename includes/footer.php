@@ -1,4 +1,5 @@
-<span class="ui three item black menu bottom fixed segment inverted" style="height:30px">
+<br><br>
+<span class="ui three item black menu bottom fixed segment inverted" style="height:30px;">
     <span class="item">
         <a href="../traitements/deconnexion.php" class="header"><i class="ui icon power" title="Deconnexion"></i>&nbsp;&nbsp;</a>&nbsp;&nbsp;
         <span class="date" style="margin-left:2px;">
