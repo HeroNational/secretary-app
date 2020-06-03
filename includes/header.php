@@ -22,6 +22,8 @@
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/dropdown.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/card.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/label.css">
+<link rel="stylesheet" type="text/css" href="../../css/dist/components/radio.css">
+<link rel="stylesheet" type="text/css" href="../../css/dist/components/checkbox.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/table.css">
 <script scr="../../css/dist/jquery3.4.1.js"></script>
 <script src="../../js/horloge.js"></script>

@@ -1,6 +1,7 @@
 <?php 
     session_start();
     $index="index";
+    $_SESSION['index']=$index;
     include("../../includes/header.php");
     if(isset($_SESSION['status'])){
         if($_SESSION['status']=false){
@@ -41,20 +42,8 @@
             <?php 
                     include("../../includes/footer.php");
             ?>
-            </div>
-            </div>
+        </div>
+    </div>
 
-
-            <script>
-                function offer() {
-                    xhttp = new XMLHttpRequest();
-                    xhttp.open("GET", "../traitements/eteindre.php", true);
-                    xhttp.send();
-                }
-                function clickl() {
-
-                    var menu = document.getElementById('mainmenu');
-                    menu.style.minHeight = screen.height;
-                }
-            </script>
 </body>
+</html>

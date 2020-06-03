@@ -17,6 +17,11 @@
             header("LOCATION: ../interface/");
         }
     }
-
-    $_SESSION['status']==false?header("location: ../../"):'';
+    $index=isset($_SESSION['redirected'])?$_SESSION['redirected']:'';
+    if(!empty($index)){
+        $_SESSION['redirected']='';
+        header("Location: ../interface/".$index);
+    }else{
+        $_SESSION['status']==false?header("location: ../../"):'';
+    }
 ?>

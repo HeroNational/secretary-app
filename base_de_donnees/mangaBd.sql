@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 30 Mai 2020 à 11:57
+-- Généré le :  Lun 01 Juin 2020 à 21:51
 -- Version du serveur :  10.1.13-MariaDB
 -- Version de PHP :  5.6.21
 
@@ -35,6 +35,13 @@ CREATE TABLE `utilisateurs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Contenu de la table `utilisateurs`
+--
+
+INSERT INTO `utilisateurs` (`id`, `login`, `password`, `etat`, `role`) VALUES
+(1, 'defaut', 'defaut', 1, 'admin');
+
+--
 -- Index pour les tables exportées
 --
 
@@ -52,7 +59,7 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

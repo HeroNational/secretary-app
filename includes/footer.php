@@ -22,3 +22,25 @@
         <a href="help.php" class="underlined"><span class="lnr lnr-question-circle"></span>&nbsp;&nbsp;&nbsp;&nbsp;Besoin d'aide?</a>
     </span>
 </span>
+
+<script>
+    function offer() {
+        var conf=confirm('Voulez-vous vraiment mettre en veille ce poste?');
+        if(conf==true){
+            xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "../traitements/eteindre.php", true);
+            xhttp.send();
+        }
+    }
+    function clickl() {
+
+        var menu = document.getElementById('mainmenu');
+        menu.style.minHeight = screen.height;
+    }
+    function del(){
+        var conf=confirm("Voulez-vous vraiment supprimer ce document?");
+        if(conf==true){
+            alert("Le document ne fait plus partir de votre base de donnees");
+        }
+    }
+</script>

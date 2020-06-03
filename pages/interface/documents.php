@@ -1,6 +1,7 @@
 <?php 
     session_start();
     $index="documents";
+    $_SESSION['index']=$index;
     include("../../includes/header.php");
     if(isset($_SESSION['status'])){
         if($_SESSION['status']=false){
@@ -20,18 +21,19 @@
             include("../../includes/menu.php");
         ?>
         <div class="ui eleven wide column grid"  style="margin-left:0px;">
+        <br>
             <div class="ui blue header">Tous les Documents</div>
             <table class="ui teal celled striped table">
-                <label for=""><a class="ui right corner red label"><i class="heart icon"></i></a></label>
-                <label for=""><a class="ui left corner red label"><i class="heart icon"></i></a></label>
+                <label for=""><a class="ui right corner red label"></a></label>
+                <label for=""><a class="ui left corner red label"></a></label>
                 <thead>
                     <tr>
-                        <th>Nom du document</th>
-                        <th>Proprietaire</th>
-                        <th>Date d'envoie</th>
-                        <th>Delai</th>
-                        <th>Secretaire en charge</th>
-                        <th>Etat</th>
+                        <th>Noms des documents</th>
+                        <th>Proprietaires</th>
+                        <th>Dates d'envoie</th>
+                        <th>Delais</th>
+                        <th>Secretaires en charge</th>
+                        <th>Etats</th>
                         <th>Operations sur les fichiers</th>
                     </tr>
                 </thead>
@@ -46,18 +48,18 @@
                             <span class="ui empty purple circular label" title="En cours" style="float:right;"></span>
                         </td>
                         <td>
-                            <button title="Supprimer"class="ui red button"   style="margin:0px;width:24px;">
+                            <button title="Supprimer"  onclick="del()"class="ui red button"   style="margin:0px;width:24px;">
                                 <i class="ui trash icon"></i>
                             </button>
                             <button title="Envoyer au proprietaire" class="ui teal button"  style="margin:0px;width:24px;">
                                 <i class="ui send icon"></i>
                             </button>
-                            <button title="Modifier les informations" class="ui blue button"  style="margin:0px;width:24px;">
+                            <a href="updatefile.php" title="Modifier les informations" class="ui blue button"  style="margin:0px;width:24px;">
                                 <i class="ui pencil icon"></i>
-                            </button>
-                            <button title="Afficher plus d'informations" class="ui grey button"  style="margin:0px;width:24px;">
+                            </a>
+                            <a href="moreinfodocument.php" title="Afficher plus d'informations" class="ui grey button"  style="margin:0px;width:24px;">
                                 <i class="ui eye icon"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                     <?php for($i=0;$i<20;$i++){ ?>
@@ -71,18 +73,19 @@
                              <span class="ui empty green circular label" title="Termine" style="float:right;"></span>
                         </td>
                         <td>
-                            <button title="Supprimer"class="ui red button"   style="margin:0px;width:24px;">
+                            <a href="updatefile.php" title="Supprimer"  onclick="del()"class="ui red button"   style="margin:0px;width:24px;">
                                 <i class="ui trash icon"></i>
-                            </button>
-                            <button title="Envoyer au proprietaire" class="ui teal button"   style="margin:0px;width:24px;">
+                            </a>
+                            <a href="updatefile.php" title="Envoyer au proprietaire" class="ui teal button"   style="margin:0px;width:24px;">
                                 <i class="ui send icon"></i>
-                            </button>
-                            <button title="Modifier les informations" class="ui blue button"  style="margin:0px;width:24px;">
+                            </a>
+                            <a href="updatefile.php" title="Modifier les informations" class="ui blue button"  style="margin:0px;width:24px;">
                                 <i class="ui pencil icon"></i>
-                            </button>
-                            <button title="Afficher plus d'informations" class="ui grey button"  style="margin:0px;width:24px;">
+                            </a>
+                           
+                            <a href="moreinfodocument.php" title="Afficher plus d'informations" class="ui grey button"  style="margin:0px;width:24px;">
                                 <i class="ui eye icon"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -98,18 +101,19 @@
                             <span class="ui empty red circular label" title="Initial" style="float:right;"></span>
                         </td>
                         <td>
-                            <button title="Supprimer"class="ui red button"   style="margin:0px;width:24px;">
+                            <button title="Supprimer"  onclick="del()"class="ui red button"   style="margin:0px;width:24px;">
                                 <i class="ui trash icon"></i>
                             </button>
                             <button title="Envoyer au proprietaire" class="ui teal button" style="margin:0px;width:24px;">
                                 <i class="ui send icon"></i>
                             </button>
-                            <button title="Modifier les informations" class="ui blue button"  style="margin:0px;width:24px;">
+                            <a href="updatefile.php" title="Modifier les informations" class="ui blue button"  style="margin:0px;width:24px;">
                                 <i class="ui pencil icon"></i>
-                            </button>
-                            <button title="Afficher plus d'informations" class="ui grey button"  style="margin:0px;width:24px;">
+                            </a>
+                           
+                            <a href="moreinfodocument.php" title="Afficher plus d'informations" class="ui grey button"  style="margin:0px;width:24px;">
                                 <i class="ui eye icon"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                 </tfoot>
@@ -185,3 +189,4 @@
     </div>
 
 </body>
+</html>

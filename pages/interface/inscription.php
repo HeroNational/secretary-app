@@ -39,7 +39,7 @@
     
     <div class="ui middle aligned center aligned grid">
         <div class="column">
-           
+            
             <?php
                 if(isset($_SESSION['status'])){
                     if($_SESSION['status']==false){
@@ -66,24 +66,36 @@
                 }
             ?>
 
-            <h2 class="ui blue image header">
+            <h2 class="ui teal image header">
                 <img src="../../images/workspace3_122057.png" style="width:200px;" class="image">
             </h2>
             <form class="ui large form" action="../traitements/connexion.php" method="post">
+
                 <div class="ui stacked segment">
-                    <div class="field blue">
-                    <div class="ui left icon input">
-                        <i class="user icon blue"></i>
-                        <input required type="text" name="login" placeholder="Login">
+
+                    <div class="field teal">
+                        <div class="ui left icon input">
+                            <i class="user icon teal"></i>
+                            <input required type="text" name="login" placeholder="Login">
+                        </div>
                     </div>
+
+                    <div class="field teal">
+                        <div class="ui left icon input">
+                            <i class="lock icon teal"></i>
+                            <input required type="password" name="password" placeholder="Mot de passe">
+                        </div>
                     </div>
-                    <div class="field blue">
-                    <div class="ui left icon input">
-                        <i class="lock icon blue"></i>
-                        <input required type="password" name="password" placeholder="Mot de passe">
+                    
+
+                    <div class="field teal">
+                        <div class="ui left icon input">
+                            <i class="key icon teal"></i>
+                            <input required type="password" name="password" placeholder="Mot de passe administrateur">
+                        </div>
                     </div>
-                    </div>
-                    <button class="ui fluid large blue submit button">Connexion</button>
+                    
+                    <button class="ui fluid large teal submit button">Inscription</button>
                 </div>
 
                 <div class="ui error message"></div>
@@ -91,7 +103,7 @@
             </form>
 
             <div class="ui message">
-                Nouveau ? <a href="inscription.php">Inscription</a>
+                Deja employer ? <a href="connexion.php">connexion</a>
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 <?php 
     session_start();
     $index="clients";
+    $_SESSION['index']=$index;
     include("../../includes/header.php");
     if(isset($_SESSION['status'])){
         if($_SESSION['status']=false){
@@ -19,7 +20,7 @@
         <?php 
             include("../../includes/menu.php");
         ?>
-        <div class="ui ten wide column grid"  style="margin-left:10px;">
+        <div class="ui ten wide column grid"  style="margin-left:10px;padding-bottom:100px">
             <div class="ui teal header">Tous les clients</div>
             <?php for($i=0;$i<20;$i++){ ?>
                 <div class="ui five wide column card left floated" style="margin-left:0px;">
@@ -37,10 +38,10 @@
                     </div>
 
                     <div class="ui two column stackable center aligned grid segment small">
-                        <a href="#" class="ui button red">
+                        <a href="#" class="ui button red" onclick="del()">
                             <i class="ui trash icon"></i>
                         </a>
-                        <a href="#" class="ui button teal">
+                        <a href="contact.php" class="ui button teal">
                             <i class="ui talk icon white"></i>
                         </a>
                     </div>
@@ -95,25 +96,12 @@
                 </form>
             </div>
         </div>
+        
     </div>
     <?php 
         include("../../includes/footer.php");
     ?>
     </div>
 
-    <script>
-        function offer() {
-            var conf=confirm('Voulez-vous vraiment mettre en veille ce poste?');
-            if(conf==true){
-                xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "../traitements/eteindre.php", true);
-                xhttp.send();
-            }
-        }
-        function clickl() {
-
-            var menu = document.getElementById('mainmenu');
-            menu.style.minHeight = screen.height;
-        }
-    </script>
 </body>
+</html>
