@@ -1,6 +1,6 @@
 # Secretary-App
 
- ``Realise avec amour par ``*<a href="github.com/kratos237/">Kratos237</a>*
+ ``Realise avec amour par ``**[Kratos237](http://github.com/kratos237/)**
 
 ># Comment-ca marche?
 
@@ -14,7 +14,7 @@
 
 #### 5 Envoyez vos feedbacks sur mon adresse email <a href="mailto:danieluokof@gmail.com">danieluokof@gmail.com</a>
 
->>- Le projet est open-source sous licence MIT
+- Le projet est open-source sous licence MIT
 
 | Dossiers            | Descriptions                                                                                                                    |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
