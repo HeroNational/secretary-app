@@ -14,7 +14,7 @@
 ?>
 <title>Gestion des clients</title>
 
-<body onload="clickl()">
+<body onload="menuHeight()">
 
     <div class="ui grid stackable ">
         <?php 

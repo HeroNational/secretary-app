@@ -10,10 +10,12 @@
     }else{
         header("LOCATION: ../../");
     }
-
+    $exist=1;
+    $existS=1;
+    $existC=1;
 ?>
-
-<body onload="clickl()">
+<title>Accueil</title>
+<body onload="menuHeight()" style="overflow-y:hidden">
 
     <div class="ui grid stackable">
         <div class="ui row">

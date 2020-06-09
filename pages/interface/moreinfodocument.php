@@ -11,10 +11,19 @@
         header("LOCATION: ../../");
     }
 
+    $id=isset($_GET['id'])?$_GET['id']:header("Location: ".$index.".php");
+    $requeteT="SELECT * FROM document WHERE document.idD like $id";
+    $executionTe=$bdd->query($requeteT);
+    $i=0;
+    while($resultate=$executionTe->fetch(PDO::FETCH_OBJ)){
+        $i=1;
+    }
+
+    $i!=1?header("Location: ".$index.".php"):"";
 ?>
 <title>Gestion des documents</title>
 
-<body onload="clickl()">
+<body onload="menuHeight()">
 
     <div class="ui grid stackable">
         <div class="ui row">
@@ -26,14 +35,18 @@
                     <h1 class="ui header teal">Informations sur le document</h1>
 
                     <div class="ui segments stackable piled">
-
+                        <?php 
+                            $requeteT="SELECT * FROM document,client, secretaire WHERE document.proprietaire=client.idC and document.secretaire=secretaire.idS and document.idD like $id GROUP BY idD ORDER BY titre ASC";
+                            $executionT=$bdd->query($requeteT);
+                            while($resultat=$executionT->fetch(PDO::FETCH_OBJ)){
+                        ?>
                         <div class="ui segment">
                             <div class="ui content">
                                 <div class="ui top red ribbon label">
                                     Nom du document:
                                 </div>
                                 <div class="ui message">
-                                    Facere, enim sapiente
+                                    <?php echo $resultat->titre; ?>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +57,7 @@
                                     Proprietaire:
                                 </div>
                                 <div class="ui message">
-                                    Daniel
+                                    <?php echo $resultat->nomC; ?>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +68,7 @@
                                     Date d'enregistrement:
                                 </div>
                                 <div class="ui message">
-                                    16 juin 2020
+                                    <?php echo $resultat->dateDeb; ?>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +79,7 @@
                                     Delai:
                                 </div>
                                 <div class="ui message">
-                                    20 mars 2020
+                                    <?php echo $resultat->delai; ?>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +90,7 @@
                                     Secretaire en charge:
                                 </div>
                                 <div class="ui message">
-                                    Manga
+                                    <?php echo $resultat->nomS; ?>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +101,24 @@
                                     Etat:
                                 </div>
                                 <div class="ui message">
-                                    En cours <span class="ui empty circular label teal" style="position:absolute; right:20px;" title="En cours"></span>
+                                <?php 
+                                    if($resultat->etatD==0){
+                                ?>
+                                        Initial<span class="ui empty red circular label" title="Initial"style="position:absolute; right:20px;"></span>
+                                <?php
+                                    }else{
+                                        if($resultat->etatD==1){
+                                ?>
+                                        En cours de saisie<span class="ui empty purple circular label" title="En cours de saisie"style="position:absolute; right:20px;"></span>
+                                <?php
+                                        }else{
+                                ?>
+                                        Saisie terminee<span class="ui empty green circular label" title="En cours de saisie"style="position:absolute; right:20px;"></span>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                                </td>
                                 </div>
                             </div>
                         </div>
@@ -99,10 +129,7 @@
                                     Description:
                                 </div>
                                 <div class="ui message">
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, ad autem neque ipsum odit reprehenderit aut quaerat aliquam deleniti commodi fugiat quia omnis veritatis, illum earum maiores voluptate voluptatum eum!
-                                    Voluptate similique ipsa quo voluptates consequatur corrupti ratione quis suscipit tempora aliquid odit voluptatem, perferendis, id tenetur. Similique quis ipsa hic quos veniam, inventore dicta molestiae earum placeat quia aut.
-                                    Maxime neque accusamus, aut qui autem, accusantium mollitia atque ullam nulla id quo. Ratione, dolorum nam! Dolorum eum et earum, expedita aliquam, quae ad consequuntur placeat aspernatur eveniet nobis quod.
-                                    Laborum, nam incidunt. Nam ducimus nulla, itaque, reiciendis dolores similique inventore ex, iure mollitia eligendi hic necessitatibus aliquam beatae eaque autem aperiam explicabo iste. Placeat tempore neque obcaecati est excepturi!
+                                    <?php echo $resultat->description; ?>
                                 </div>
                             </div>
                         </div>
@@ -115,13 +142,13 @@
                                 <div class="ui message">
 
                                     <center>
-                                        <button title="Supprimer"  onclick="del()"class="ui red button"   style="margin:0px;width:24px;">
+                                        <button title="Supprimer"  onclick="deletefile(<?php echo $resultat->idD; ?>)" class="ui red button"   style="margin:0px;width:24px;">
                                             <i class="ui trash icon"></i>
                                         </button>
                                         <button title="Envoyer au proprietaire" class="ui teal button" style="margin:0px;width:24px;">
                                             <i class="ui send icon"></i>
                                         </button>
-                                        <a href="updatefile.php" title="Modifier les informations" class="ui blue button"  style="margin:0px;width:24px;">
+                                        <a href="updatefile.php?id=<?php echo $resultat->idD; ?>" title="Modifier les informations" class="ui blue button"  style="margin:0px;width:24px;">
                                             <i class="ui pencil icon"></i>
                                         </a>
                                     </center>
@@ -129,9 +156,7 @@
                                 </div>
                             </div>
                         </div>
-
-
-
+                        <?php } ?>
                     </div>
 
                 </div>

@@ -4,7 +4,13 @@
                 <a href="index.php" class="<?php echo  $index=="index"?"active":''; ?> item teal">Acceuil</a>
                 <a href="documents.php" class="item teal <?php echo $index=="documents"?"active":''; ?>"> Documents</a>
                 <a href="clients.php" class="<?php echo $index=="clients"?"active":''; ?> item teal">Clients</a>
-
+                <?php 
+                    if($_SESSION["role"]=="admin"){
+                        ?>
+                        <a href="users.php" class="<?php echo $index=="users"?"active":''; ?> item teal">Secretaires</a>
+                        <?php
+                    }
+                ?>
                 <div class="item teal">
                     <a href="../traitements/deconnexion.php" class="ui primary button">
                         <i class="ui log out icon"></i>Deconnexion

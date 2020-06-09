@@ -1,5 +1,5 @@
 <br><br>
-<span class="ui three item black menu bottom fixed segment inverted" style="height:30px;">
+<span class="ui three item black menu bottom fixed segment inverted"  id="hghg" style="height:30px;">
     <span class="item">
         <a href="../traitements/deconnexion.php" class="header"><i class="ui icon power" title="Deconnexion"></i>&nbsp;&nbsp;</a>&nbsp;&nbsp;
         <span class="date" style="margin-left:2px;">
@@ -23,6 +23,10 @@
     </span>
 </span>
 
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/swalall.js"></script>
+<script src="../../js/swalmin.js"></script>
 <script>
     function offer() {
         var conf=confirm('Voulez-vous vraiment mettre en veille ce poste?');
@@ -32,15 +36,203 @@
             xhttp.send();
         }
     }
-    function clickl() {
+    function menuHeight() {
 
         var menu = document.getElementById('mainmenu');
         menu.style.minHeight = screen.height;
+        
+            <?php 
+
+                if(!isset($existS)){
+                    $existS=1;
+                }
+                if(!isset($existC)){
+                    $existC=1;
+                }
+
+                if($existS==0 && $existC==0){
+                    $text="Impossible d\'enregistrer un document s\'il n\'y a pas de client existant et  de secretaire existante.";
+                    $footer="<a href=\'clients.php\'>Enregistrer un client?</a>&nbsp;&nbsp;<a href=\'users.php\'>Enregistrer une secretaire?</a>";
+                }else{
+                    if($existS==1 && $existC==0){
+                        $text="Impossible d\'enregistrer un document s\'il n\'y a pas de client existant.";
+                        $footer="<a href=\'clients.php\'>Enregistrer un client?</a>";
+                    }else{
+                        if($existS==0 && $existC==1){
+                            $text="Impossible d\'enregistrer un document s\'il n\'y a pas de secretaire existante.";
+                            $footer="<a href=\'users.php\'>Enregistrer une secretaire?</a>";
+                        }
+                    }
+                }
+            if($existS==0 || $existC==0 ){
+                $exist=1;
+            }
+            if($existS==0 || $existC==0){
+            ?>
+ 
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '<?php echo  $text; ?>',
+                footer: '<?php echo $footer ?>',
+                background: '#ffe',
+                backdrop: `
+                    rgba(0,25,123,0.4)
+                `,
+                showConfirmButton:false,
+                showCloseButton:true,
+            })
+        <?php 
+            }
+        ?>
+        
+            <?php 
+                if($exist==0){
+            ?>
+ 
+                Swal.fire({
+                    title: 'Oups...!',
+                    text: 'Aucun enregistrement pour cette section.',
+                    padding: '3em',
+                    background: '#fff url(../../../images/workspace1_122059.png)',
+                    backdrop: `
+                        rgba(0,25,123,0.4)
+                        center left
+                        no-repeat
+                    `,
+                    showConfirmButton:false,
+                    showCloseButton:true,
+                })
+
+            <?php
+                }
+            ?>
+
     }
-    function del(){
-        var conf=confirm("Voulez-vous vraiment supprimer ce document?");
-        if(conf==true){
-            alert("Le document ne fait plus partir de votre base de donnees");
-        }
+</script>
+<script>
+
+
+    function deletefile(id) {
+        var idr = "#line" + id;
+        Swal.fire({
+            title: 'Etes vous sure ?',
+            text: "Vous ne pourriez revenir en arrière!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085k4',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Oui, supprimer !',
+            background: '#ffe',
+            backdrop: `
+                rgba(0,25,123,0.4)
+            `,
+        }).then((result) => {
+            if (result.value) {
+                xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "../traitements/deletefile.php?id=" + id, true);
+                xhttp.send();
+                 const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 5000
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Fichier supprime avec succes !',
+                    background: 'white',
+                })
+                $(idr).hide();
+            }
+        })
     }
+    function deleteclient(id) {
+        var idr = "#line" + id;
+        Swal.fire({
+            title: 'Etes vous sure ?',
+            text: "Vous ne pourriez revenir en arrière!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085k4',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Oui, supprimer !',
+            background: '#ffe',
+            backdrop: `
+                rgba(0,25,123,0.4)
+            `,
+        }).then((result) => {
+            if (result.value) {
+                xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "../traitements/deleteclient.php?id=" + id, true);
+                xhttp.send();
+                 const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 5000
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Client supprime avec succes !',
+                    background: 'white',
+                })
+                $(idr).hide(150);
+            }
+        })
+    }
+
+    function deleteuser(id) {
+        var idr = "#line" + id;
+        Swal.fire({
+            title: 'Etes vous sure ?',
+            text: "Vous ne pourriez revenir en arrière!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085k4',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Oui, supprimer !',
+            background: '#ffe',
+            backdrop: `
+                rgba(0,25,123,0.4)
+            `,
+        }).then((result) => {
+            if (result.value) {
+                xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "../traitements/deleteuser.php?id=" + id, true);
+                xhttp.send();
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 5000
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Secretaire supprime avec succes !',
+                    background: 'white',
+                }).then((result) => {
+                        /* Swal.fire({
+                            title: 'Oups...!',
+                            text: 'Aucun enregistrement pour cette section.',
+                            padding: '3em',
+                            background: '#fff url(../../../images/workspace1_122059.png)',
+                            backdrop: `
+                                rgba(0,25,123,0.4)
+                                center left
+                                no-repeat
+                            `,
+                            showConfirmButton:false,
+                            showCloseButton:true,
+                        }) */
+                    }
+                );
+                $(idr).hide(150);
+            }
+        })
+    }
+
 </script>
