@@ -4,7 +4,7 @@
     $_SESSION['index']=$index;
     include("../../includes/header.php");
     if(isset($_SESSION['status'])){
-        if($_SESSION['status']=false){
+        if($_SESSION['status']==false){
             header("LOCATION: ../../");
         } 
     }else{
@@ -31,7 +31,7 @@
                     <div class="">Nom</div>
                     <div class="ui left icon input">
                         <i class="ui icon user"></i>
-                        <input type="text" readonlyl placeholder="Nom du client" name="nom" id="">
+                        <input type="text" placeholder="Nom du client" name="nom" id="">
                     </div>
                 </div>
 

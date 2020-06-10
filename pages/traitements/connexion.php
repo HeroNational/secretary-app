@@ -1,7 +1,7 @@
 <?php 
     session_start();
     include("../../includes/connexionBd.php");
-    $_SESSION['status']=false;
+    $_SESSION['status']==false;
     if($bdd){
         $login=!empty($_POST['login'])?$_POST['login']:'';
         $password=!empty($_POST['password'])?$_POST['password']:'';

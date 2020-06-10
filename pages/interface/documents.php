@@ -4,7 +4,7 @@
     $_SESSION['index']=$index;
     include("../../includes/header.php");
     if(isset($_SESSION['status'])){
-        if($_SESSION['status']=false){
+        if($_SESSION['status']==false){
             header("LOCATION: ../../");
         } 
     }else{
@@ -96,7 +96,17 @@
                     ?>
                     <tr  id="line<?php echo $resultatT->idD; ?>">
                         <td><b><?php echo $resultatT->titre; ?></b></td>
-                        <td><?php echo $resultatT->nomC; ?></td>
+                        <td>
+                            <?php 
+                                if($resultatT->etat==0){ 
+                            ?>
+                            <span class="ui red header">footoo</span>
+                            <?php 
+                                }else{
+                                 echo $resultatT->nomC;
+                                }
+                            ?>
+                        </td>
                         <td><?php echo $resultatT->dateDeb; ?></td>
                         <td><?php echo $resultatT->delai; ?></td>
                         <td><?php echo $resultatT->nomS; ?></td>
@@ -179,7 +189,7 @@
                         <div class="ui">Nom du document</div>
                         <div class="ui left icon input">
                             <i class="ui icon user"></i>
-                            <input type="text" placeholder="Nom du document" name="nom" id="">
+                            <input required type="text" placeholder="Nom du document" name="nom" id="">
                         </div>
                     </div>
 
@@ -189,7 +199,7 @@
                             <select name="proprietaire" id="">
                                 <option value=""></option>
                                 <?php
-                                    $requete="SELECT * FROM client ORDER BY nomC ASC";
+                                    $requete="SELECT * FROM client WHERE etat!=0 ORDER BY nomC ASC";
                                     $execution=$bdd->query($requete);
                                     while($resultat=$execution->fetch(PDO::FETCH_OBJ)){
                                         echo "
@@ -206,7 +216,7 @@
                         <div class="ui">Delai</div>
                         <div class="ui left icon input">
                             <i class="ui icon calendar"></i>
-                            <input type="date" placeholder="Delai d'envoi du document" name="delai" id="">
+                            <input required type="date" placeholder="Delai d'envoi du document" name="delai" id="">
                         </div>
                     </div>
 
@@ -260,7 +270,7 @@
                                             Inscrivez une nouvelle secretaire avant de continuer en cliquant sur le <a href="users.php" class="ui content teal">boutton ci-dessous.</a>
                                             <br>
                                             <br>
-                                            <a href="clients.php" class="ui button teal">Nouvelle secretaire</a>
+                                            <a href="users.php" class="ui button teal">Nouvelle secretaire</a>
                                         </div> 
                                     </center>
                                     <?php

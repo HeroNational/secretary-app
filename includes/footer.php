@@ -227,7 +227,9 @@
                             `,
                             showConfirmButton:false,
                             showCloseButton:true,
-                        }) */
+                        }) 
+                        //linear-gradient(to top, #37ecba 0%, #72afd3 100%)
+                        */
                     }
                 );
                 $(idr).hide(150);

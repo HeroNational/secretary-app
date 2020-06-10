@@ -4,7 +4,7 @@
     $_SESSION['index']=$index;
     include("../../includes/header.php");
     if(isset($_SESSION['status'])){
-        if($_SESSION['status']=false){
+        if($_SESSION['status']==false){
             header("LOCATION: ../../");
         } 
     }else{
