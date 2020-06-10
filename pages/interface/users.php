@@ -44,7 +44,7 @@
                 style="margin-left:0px;">
                 <div class="image">
                     <img
-                        src="../../images/secretaires/<?php echo file_exists("../../images/secretaires/".$resultate->nomS.$resultate->dateAjout.".jpg")?$resultate->nomS.$resultate->dateAjout.".jpg":"defaut.png"; ?>">
+                        src="../../images/secretaires/<?php echo file_exists("../../images/secretaires/".$resultate->nomS.$resultate->dateAjout.".jpg")?$resultate->nomS.$resultate->dateAjout.".jpg":"defaut.jpg"; ?>">
                 </div>
                 <div class="content">
                     <div class="header"><?php echo $resultate->nomS; ?></div>
