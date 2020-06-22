@@ -2,8 +2,7 @@
 SQLyog Ultimate v11.11 (64 bit)
 MySQL - 5.5.5-10.1.13-MariaDB : Database - manga
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -33,6 +32,28 @@ CREATE TABLE `client` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `client` */
+
+/*Table structure for table `document` */
+
+DROP TABLE IF EXISTS `document`;
+
+CREATE TABLE `document` (
+  `idD` int(11) NOT NULL AUTO_INCREMENT,
+  `titre` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `dateDeb` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `delai` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `description` text CHARACTER SET latin1 NOT NULL,
+  `secretaire` int(11) NOT NULL,
+  `etatD` int(11) NOT NULL,
+  `proprietaire` int(11) NOT NULL,
+  PRIMARY KEY (`idD`),
+  KEY `fk_document_proprietaire` (`proprietaire`),
+  KEY `fk_document_secretaire` (`secretaire`),
+  CONSTRAINT `fk_document_proprietaire` FOREIGN KEY (`proprietaire`) REFERENCES `client` (`idC`),
+  CONSTRAINT `fk_document_secretaire` FOREIGN KEY (`secretaire`) REFERENCES `secretaire` (`idS`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `document` */
 
 /*Table structure for table `secretaire` */
 
@@ -65,30 +86,6 @@ CREATE TABLE `utilisateurs` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `utilisateurs` */
-
-
-/*Table structure for table `document` */
-
-DROP TABLE IF EXISTS `document`;
-
-CREATE TABLE `document` (
-  `idD` int(11) NOT NULL AUTO_INCREMENT,
-  `titre` varchar(200) CHARACTER SET latin1 NOT NULL,
-  `dateDeb` varchar(200) CHARACTER SET latin1 NOT NULL,
-  `delai` varchar(200) CHARACTER SET latin1 NOT NULL,
-  `description` text CHARACTER SET latin1 NOT NULL,
-  `secretaire` int(11) NOT NULL,
-  `etatD` int(11) NOT NULL,
-  `proprietaire` int(11) NOT NULL,
-  PRIMARY KEY (`idD`),
-  KEY `fk_document_proprietaire` (`proprietaire`),
-  KEY `fk_document_secretaire` (`secretaire`),
-  CONSTRAINT `fk_document_proprietaire` FOREIGN KEY (`proprietaire`) REFERENCES `client` (`idC`),
-  CONSTRAINT `fk_document_secretaire` FOREIGN KEY (`secretaire`) REFERENCES `secretaire` (`idS`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `document` */
-
 
 insert  into `utilisateurs`(`id`,`login`,`password`,`etat`,`role`) values (1,'defaut','defaut',1,'admin');
 
