@@ -29,12 +29,41 @@
 <script src="../../js/swalmin.js"></script>
 <script>
     function offer() {
-        var conf=confirm('Voulez-vous vraiment mettre en veille ce poste?');
-        if(conf==true){
-            xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "../traitements/eteindre.php", true);
-            xhttp.send();
-        }
+        Swal.fire({
+            title: 'Etes vous sure ?',
+            text: 'Voulez-vous vraiment mettre en veille ce poste?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: 'teal',
+            confirmButtonText: 'Oui',
+            cancelButtonText: 'Non',
+            background: '#ffe',
+            backdrop: `
+                rgba(0,25,123,0.4)
+            `,
+        }).then((result) => {
+            if (result.value) {
+                
+                 const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: true,
+                    confirmButtonColor:'green',
+                    timer: 5000
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Mise en veille !',
+                    background: 'white',
+                }).then(()=>{
+                    xhttp = new XMLHttpRequest();
+                    xhttp.open("GET", "../traitements/eteindre.php", true);
+                    xhttp.send();
+                })
+            }
+        })
     }
     function menuHeight() {
 

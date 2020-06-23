@@ -12,6 +12,7 @@
     }
     $exist=1;
 ?>
+<title>Statistiques</title>
 <script>
 window.onload = function() {
 menuHeight();
