@@ -14,7 +14,7 @@
                 echo date('o')." ";
             ?>
              
-            <span style="" id="horloge"></span>
+            <span  id="horloge"></span>
         </span>
     </span>
         <span class="item"> &copy; SECRETARIAT &compfn; 2019-  <?php $h=explode(" ",date("r"));  echo $h['3'];?></span>
