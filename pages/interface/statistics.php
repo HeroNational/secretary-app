@@ -68,6 +68,6 @@ chart.render();
     </div>
 
 </body>
-<script src="../../js/jquery.canvasjs.min.js"></script>
+<script src="../../js/jquery.canvasjs.min.fr.js"></script>
 </body>
 </html>
