@@ -267,10 +267,10 @@
                                     ?>
                                     <center>
                                         <div style="max-width:400px">
-                                            Inscrivez une nouvelle secretaire avant de continuer en cliquant sur le <a href="users.php" class="ui content teal">boutton ci-dessous.</a>
+                                            Inscrivez une nouvelle secretaire avant de continuer en cliquant sur le <a href="users.php?toast=0" class="ui content teal">boutton ci-dessous.</a>
                                             <br>
                                             <br>
-                                            <a href="users.php" class="ui button teal">Nouvelle secretaire</a>
+                                            <a href="users.php?toast=0" class="ui button teal">Nouvelle secretaire</a>
                                         </div> 
                                     </center>
                                     <?php
@@ -279,10 +279,10 @@
                                     ?>
                                     <center>
                                         <div style="max-width:400px">
-                                            Inscrivez un nouveau client avant de continuer en cliquant sur le <a href="users.php" class="ui content teal">boutton ci-dessous.</a>
+                                            Inscrivez un nouveau client avant de continuer en cliquant sur le <a href="users.php?toast=0" class="ui content teal">boutton ci-dessous.</a>
                                             <br>
                                             <br>
-                                            <a href="clients.php" class="ui button teal">Nouveau client</a>
+                                            <a href="clients.php?toast=0" class="ui button teal">Nouveau client</a>
                                         </div> 
                                     </center>
                                     <?php
@@ -293,7 +293,7 @@
                                                 Inscrivez une nouvelle secretaire et un nouveau client avant de continuer en cliquant sur les boutton ci-dessous.
                                                 <br>
                                                 <br>
-                                                <a href="clients.php" class="ui button teal">Nouveau client</a>&nbsp;&nbsp;<a href="users.php" class="ui button blue">Nouvelle secretaire</a>
+                                                <a href="clients.php?toast=0" class="ui button teal">Nouveau client</a>&nbsp;&nbsp;<a href="users.php?toast=0" class="ui button blue">Nouvelle secretaire</a>
                                             </div> 
                                         </center>
                                         <?php

@@ -14,7 +14,7 @@
                 echo date('o')." ";
             ?>
              
-            <span  id="horloge"></span>
+            <span style="" id="horloge"></span>
         </span>
     </span>
         <span class="item"> &copy; SECRETARIAT &compfn; 2019-  <?php $h=explode(" ",date("r"));  echo $h['3'];?></span>
@@ -28,115 +28,14 @@
 <script src="../../js/swalall.js"></script>
 <script src="../../js/swalmin.js"></script>
 <script>
+$(document).ready(menuHeight());
     function offer() {
-        Swal.fire({
-            title: 'Etes vous sure ?',
-            text: 'Voulez-vous vraiment mettre en veille ce poste?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: 'teal',
-            confirmButtonText: 'Oui',
-            cancelButtonText: 'Non',
-            background: '#ffe',
-            backdrop: `
-                rgba(0,25,123,0.4)
-            `,
-        }).then((result) => {
-            if (result.value) {
-                
-                 const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: true,
-                    confirmButtonColor:'green',
-                    timer: 5000
-                })
-
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Mise en veille !',
-                    background: 'white',
-                }).then(()=>{
-                    xhttp = new XMLHttpRequest();
-                    xhttp.open("GET", "../traitements/eteindre.php", true);
-                    xhttp.send();
-                })
-            }
-        })
-    }
-    function menuHeight() {
-
-        var menu = document.getElementById('mainmenu');
-        menu.style.minHeight = screen.height;
-        
-            <?php 
-
-                if(!isset($existS)){
-                    $existS=1;
-                }
-                if(!isset($existC)){
-                    $existC=1;
-                }
-
-                if($existS==0 && $existC==0){
-                    $text="Impossible d\'enregistrer un document s\'il n\'y a pas de client existant et  de secretaire existante.";
-                    $footer="<a href=\'clients.php\'>Enregistrer un client?</a>&nbsp;&nbsp;<a href=\'users.php\'>Enregistrer une secretaire?</a>";
-                }else{
-                    if($existS==1 && $existC==0){
-                        $text="Impossible d\'enregistrer un document s\'il n\'y a pas de client existant.";
-                        $footer="<a href=\'clients.php\'>Enregistrer un client?</a>";
-                    }else{
-                        if($existS==0 && $existC==1){
-                            $text="Impossible d\'enregistrer un document s\'il n\'y a pas de secretaire existante.";
-                            $footer="<a href=\'users.php\'>Enregistrer une secretaire?</a>";
-                        }
-                    }
-                }
-            if($existS==0 || $existC==0 ){
-                $exist=1;
-            }
-            if($existS==0 || $existC==0){
-            ?>
- 
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: '<?php echo  $text; ?>',
-                footer: '<?php echo $footer ?>',
-                background: '#ffe',
-                backdrop: `
-                    rgba(0,25,123,0.4)
-                `,
-                showConfirmButton:false,
-                showCloseButton:true,
-            })
-        <?php 
-            }
-        ?>
-        
-            <?php 
-                if($exist==0){
-            ?>
- 
-                Swal.fire({
-                    title: 'Oups...!',
-                    text: 'Aucun enregistrement pour cette section.',
-                    padding: '3em',
-                    background: '#fff url(../../../images/workspace1_122059.png)',
-                    backdrop: `
-                        rgba(0,25,123,0.4)
-                        center left
-                        no-repeat
-                    `,
-                    showConfirmButton:false,
-                    showCloseButton:true,
-                })
-
-            <?php
-                }
-            ?>
-
+        var conf=confirm('Voulez-vous vraiment mettre en veille ce poste?');
+        if(conf==true){
+            xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "../traitements/eteindre.php", true);
+            xhttp.send();
+        }
     }
 </script>
 <script>

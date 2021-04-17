@@ -1,8 +1,4 @@
-<style>
-    .canvasjs-chart-credit{
-        display: none;
-    }
-</style>
+
         <div class="ui menu two wide column inverted vertical dark top fixed left aligned" style=";z-index:10203;padding:60px 10px;" id="mainmenu">
             <div class="ui container" style="position:sticky; top:0px;">
                 <a href="index.php" class="<?php echo  $index=="index"?"active":''; ?> item teal">Acceuil</a>
@@ -11,8 +7,7 @@
                 <?php 
                     if($_SESSION["role"]=="admin"){
                         ?>
-                            <a href="users.php" class="<?php echo $index=="users"?"active":''; ?> item teal">Secretaires</a>
-                            <a href="statistics.php" class="<?php echo $index=="statistics"?"active":''; ?> item teal">Statistiques</a>
+                        <a href="users.php" class="<?php echo $index=="users"?"active":''; ?> item teal">Secretaires</a>
                         <?php
                     }
                 ?>

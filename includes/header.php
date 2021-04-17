@@ -9,7 +9,6 @@
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/header.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/image.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/menu.css">
-<link rel="stylesheet" type="text/css" href="../../css/dist/components/breadcumb.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/divider.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/segment.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/form.css">
@@ -23,7 +22,6 @@
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/dropdown.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/card.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/label.css">
-<link rel="stylesheet" type="text/css" href="../../css/dist/components/radio.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/checkbox.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/table.css">
 <link rel="stylesheet" type="text/css" href="../../css/swal.css">
@@ -34,3 +32,81 @@
     include("../../includes/connexionBd.php");
     $exist=0;
 ?>
+<script>
+    
+    function menuHeight() {
+
+var menu = document.getElementById('mainmenu');
+menu.style.minHeight = screen.height;
+
+    <?php 
+
+        if(!isset($existS)){
+            $existS=1;
+        }
+        if(!isset($existC)){
+            $existC=1;
+        }
+
+        if($existS==0 && $existC==0){
+            $text="Impossible d\'enregistrer un document s\'il n\'y a pas de client existant et  de secretaire existante.";
+            $footer="<a href=\'clients.php\?toast=0'>Enregistrer un client?</a>&nbsp;&nbsp;<a href=\'users.php\?toast=0'>Enregistrer une secretaire?</a>";
+        }else{
+            if($existS==1 && $existC==0){
+                $text="Impossible d\'enregistrer un document s\'il n\'y a pas de client existant.";
+                $footer="<a href=\'clients.php\?toast=0'>Enregistrer un client?</a>";
+            }else{
+                if($existS==0 && $existC==1){
+                    $text="Impossible d\'enregistrer un document s\'il n\'y a pas de secretaire existante.";
+                    $footer="<a href=\'users.php\?toast=0'>Enregistrer une secretaire?</a>";
+                }
+            }
+        }
+    if($existS==0 || $existC==0 ){
+        $exist=1;
+    }
+    if($existS==0 || $existC==0){
+    ?>
+
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '<?php echo  $text; ?>',
+        footer: '<?php echo $footer ?>',
+        background: '#ffe',
+        backdrop: `
+            rgba(0,25,123,0.4)
+        `,
+        showConfirmButton:false,
+        showCloseButton:true,
+    })
+<?php 
+    }
+?>
+
+    <?php 
+        if(isset($_GET['toast'])){
+            if($_GET['toast']==0){
+    ?>
+
+        Swal.fire({
+            title: 'Oups...!',
+            text: 'Aucun enregistrement pour cette section.',
+            padding: '3em',
+            background: '#fff url(../../../images/workspace1_122059.png)',
+            backdrop: `
+                rgba(0,25,123,0.4)
+                center left
+                no-repeat
+            `,
+            showConfirmButton:false,
+            showCloseButton:true,
+        })
+
+    <?php
+            }
+        }
+    ?>
+
+}
+</script>
