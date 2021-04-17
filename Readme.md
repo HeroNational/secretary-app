@@ -6,7 +6,7 @@
 
 #### 1 Installez la base de donnees
 
-#### 2 Hebergez le projet dans un serveur Apache
+#### 2 Hebergez le projet dans un serveur Web
 
 #### 3 Stagizez ce projet sur ce github
 
