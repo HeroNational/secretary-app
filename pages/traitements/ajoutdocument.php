@@ -13,11 +13,12 @@
         $del=htmlspecialchars($_POST['delai']);
         $sec=htmlspecialchars($_POST['secretaire']);
         $des=htmlspecialchars($_POST['description']);
+        $prix=htmlspecialchars($_POST['prix']);
 
         if(!empty($_POST['nom']) and !empty($_POST['proprietaire']) and !empty($_POST['delai']) and !empty($_POST['secretaire']) and !empty($_POST['description'])){
             $del=formatsimpledate($del, "fr"," ");
             $dat=formatsimpledate(date("o-m-d"), "fr"," ");
-            $requete="INSERT INTO `document` (`idD`, `titre`, `dateDeb`, `delai`, `description`, `secretaire`, `etatD`, `proprietaire`) VALUES (NULL, '$nom', '$dat', '$del', '$des', '$sec', '0', '$pro');";
+            $requete="INSERT INTO `document` (`idD`, `titre`, `dateDeb`, `delai`, `description`, `secretaire`, `etatD`, `proprietaire`,`prix`) VALUES (NULL, '$nom', '$dat', '$del', '$des', '$sec', '0', '$pro','$prix');";
             if($bdd->query($requete)){
                 header("Location: ../interface/".$index);
             }else{

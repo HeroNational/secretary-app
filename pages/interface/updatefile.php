@@ -2,7 +2,6 @@
     session_start();
     $index="documents";
     $_SESSION['index']=$index;
-    include("../../includes/header.php");
     if(isset($_SESSION['status'])){
         if($_SESSION['status']==false){
             header("LOCATION: ../../");
@@ -10,6 +9,7 @@
     }else{
         header("LOCATION: ../../");
     }
+    include("../../includes/header.php");
 
 ?>
 <title>Gestion des clients</title>

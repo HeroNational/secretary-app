@@ -2,7 +2,6 @@
     session_start();
     $index="index";
     $_SESSION['index']=$index;
-    include("../../includes/header.php");
     if(isset($_SESSION['status'])){
         if($_SESSION['status']==false){
             header("LOCATION: ../../");
@@ -13,6 +12,7 @@
     $exist=1;
     $existS=1;
     $existC=1;
+    include("../../includes/header.php");
 ?>
 <title>Accueil</title>
 <body onload="menuHeight()" style="overflow-y:hidden">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <?php 
-                    include("../../includes/footer.php");
+                include("../../includes/footer.php");
             ?>
         </div>
     </div>

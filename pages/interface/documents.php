@@ -2,7 +2,6 @@
     session_start();
     $index="documents";
     $_SESSION['index']=$index;
-    include("../../includes/header.php");
     if(isset($_SESSION['status'])){
         if($_SESSION['status']==false){
             header("LOCATION: ../../");
@@ -10,6 +9,7 @@
     }else{
         header("LOCATION: ../../");
     }
+    include("../../includes/header.php");
 
 
 ?>
@@ -64,7 +64,7 @@
                 </a>
 
                 <div class="divider"> / </div>
-                <a href="?id=3" class="section
+                <a href="?&id=3" class="section
                             <?php 
                             if(isset($_GET['id'])){ 
                                 echo $_GET['id']==3?"active":'';
@@ -73,7 +73,19 @@
                                 }
                                 } 
                             ?>">
-                    Secretaires
+                    Clients
+                </a>
+                <div class="divider"> / </div>
+                <a href="?&id=3" class="section
+                            <?php 
+                            if(isset($_GET['id'])){ 
+                                echo $_GET['id']==3?"active":'';
+                                if($_GET['id']==3){
+                                        $close="etatD";
+                                }
+                                } 
+                            ?>">
+                    Etat
                 </a>
             </div>
             <label for=""><a class="ui right corner red label"></a></label>
@@ -84,6 +96,7 @@
                     <th>Proprietaires</th>
                     <th>Dates d'envoie</th>
                     <th>Delais</th>
+                    <th>Prix</th>
                     <th>Secretaires en charge</th>
                     <th>Etats</th>
                     <th>Operations sur les fichiers</th>
@@ -91,6 +104,10 @@
                 <tbody>
                     <?php
                         $requeteT="SELECT * FROM document,client, secretaire WHERE document.proprietaire=client.idC and document.secretaire=secretaire.idS and document.etatD<3 GROUP BY idD ORDER BY $close ASC";
+                        if(isset($_GET['client'])){
+                            $id=$_GET['client'];
+                            $requeteT="SELECT * FROM document,client, secretaire WHERE document.proprietaire=client.idC and document.secretaire=secretaire.idS and document.etatD<3 and document.proprietaire=$id GROUP BY idD ORDER BY $close ASC";
+                        }
                         $executionT=$bdd->query($requeteT);
                         while($resultatT=$executionT->fetch(PDO::FETCH_OBJ)){
                     ?>
@@ -109,6 +126,7 @@
                         </td>
                         <td><?php echo $resultatT->dateDeb; ?></td>
                         <td><?php echo $resultatT->delai; ?></td>
+                        <td><?php echo $resultatT->prix; ?> FCFA</td>
                         <td><?php echo $resultatT->nomS; ?></td>
                         <td>
                             <?php 
@@ -240,11 +258,17 @@
 
                     <div class="ui field">
                         <div class="ui top labeled">
+                            <div class="ui">Coût de la saisie du document</div>
+                            <input type="number" min="0" name="prix" id="">
+                        </div>
+                    </div>
+
+                    <div class="ui field">
+                        <div class="ui top labeled">
                             <div class="ui">Description du document</div>
                             <textarea name="description" id="" cols="30" rows="4"></textarea>
                         </div>
                     </div>
-
 
                     <div class="ui field">
                         <center>
@@ -267,10 +291,10 @@
                                     ?>
                                     <center>
                                         <div style="max-width:400px">
-                                            Inscrivez une nouvelle secretaire avant de continuer en cliquant sur le <a href="users.php?toast=0" class="ui content teal">boutton ci-dessous.</a>
+                                            Inscrivez une nouvelle secretaire avant de continuer en cliquant sur le <a href="users.php?" class="ui content teal">boutton ci-dessous.</a>
                                             <br>
                                             <br>
-                                            <a href="users.php?toast=0" class="ui button teal">Nouvelle secretaire</a>
+                                            <a href="users.php?" class="ui button teal">Nouvelle secretaire</a>
                                         </div> 
                                     </center>
                                     <?php
@@ -279,10 +303,10 @@
                                     ?>
                                     <center>
                                         <div style="max-width:400px">
-                                            Inscrivez un nouveau client avant de continuer en cliquant sur le <a href="users.php?toast=0" class="ui content teal">boutton ci-dessous.</a>
+                                            Inscrivez un nouveau client avant de continuer en cliquant sur le <a href="users.php?" class="ui content teal">boutton ci-dessous.</a>
                                             <br>
                                             <br>
-                                            <a href="clients.php?toast=0" class="ui button teal">Nouveau client</a>
+                                            <a href="clients.php?" class="ui button teal">Nouveau client</a>
                                         </div> 
                                     </center>
                                     <?php
@@ -293,7 +317,7 @@
                                                 Inscrivez une nouvelle secretaire et un nouveau client avant de continuer en cliquant sur les boutton ci-dessous.
                                                 <br>
                                                 <br>
-                                                <a href="clients.php?toast=0" class="ui button teal">Nouveau client</a>&nbsp;&nbsp;<a href="users.php?toast=0" class="ui button blue">Nouvelle secretaire</a>
+                                                <a href="clients.php?" class="ui button teal">Nouveau client</a>&nbsp;&nbsp;<a href="users.php?" class="ui button blue">Nouvelle secretaire</a>
                                             </div> 
                                         </center>
                                         <?php

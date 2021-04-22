@@ -11,12 +11,12 @@
     <meta name="viewport" content="width=0, initial-scale=1.0">
     
     <?php 
-        include("../../includes/header.php");
         if(isset($_SESSION['status'])){
             if($_SESSION['status']==false){
                 header("LOCATION: ./");
             } 
         }
+        include("../../includes/header.php");
 
     ?>
 
@@ -99,5 +99,11 @@
         </div>
     </div>
 
+    <script>
+        addEventListener("load",()=>{
+            $("html, body").css({overflow:"hidden"})
+            $(".loader").hide().then($("body").show("100"))
+        });
+    </script>
 </body>
 </html>

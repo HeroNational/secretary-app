@@ -2,7 +2,6 @@
     session_start();
     $index="clients";
     $_SESSION['index']=$index;
-    include("../../includes/header.php");
     if(isset($_SESSION['status'])){
         if($_SESSION['status']==false){
             header("LOCATION: ../../");
@@ -10,11 +9,12 @@
     }else{
         header("LOCATION: ../../");
     }
+    include("../../includes/header.php");
 
 ?>
 <title>Gestion des clients</title>
 
-<body onload="menuHeight()">
+<body onload="menuHeight()" onresize="menuHeight()">
 
     <div class="ui grid stackable">
         <?php 
@@ -65,14 +65,17 @@
                     </div>
 
                     <div class="ui two column stackable center aligned grid message">
-                        <a href="#" class="ui button red" onclick="deleteclient(<?php echo $resultate->idC; ?>)">
+                        <a href="#" class="ui button red" title="Supprimer" onclick="deleteclient(<?php echo $resultate->idC; ?>)">
                             <i class="ui trash icon"></i>
                         </a>
-                        <a href="mailto: <?php echo $resultate->email; ?>" class="ui button teal">
+                        <a href="mailto: <?php echo $resultate->email; ?>" title="Envoyer un mail" class="ui button teal">
                             <i class="ui talk icon white"></i>
                         </a>
-                        <a href="tel: <?php echo $resultate->telephone; ?>" class="ui button blue">
+                        <a href="tel: <?php echo $resultate->telephone; ?>" tilte='Appeler' class="ui button blue">
                             <i class="ui phone icon white"></i>
+                        </a>
+                        <a href="./documents.php?client=<?php echo $resultate->idC; ?>" title="Afficher ses documents" class="ui button green">
+                            <i class="ui  book icon white"></i>
                         </a>
                     </div>
                 </div>

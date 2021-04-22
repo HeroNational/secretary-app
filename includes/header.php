@@ -2,7 +2,6 @@
 <meta name="viewport" content="width=0, initial-scale=1.0">
     
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/reset.css">
-<link rel="stylesheet" type="text/css" href="../../css/dist/components/site.css">
 
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/container.css">
 <link rel="stylesheet" type="text/css" href="../../css/dist/components/grid.css">
@@ -29,15 +28,51 @@
 <script scr="../../css/dist/jquery3.4.1.js"></script>
 <script src="../../js/horloge.js"></script>
 <?php 
+    function Is_daytime(){
+
+        $now=time();
+
+        $longitude = 52.27026;
+        $latitude  = -1.89188;
+        
+        $sun    = date_sun_info ( $now, $longitude, $latitude);
+        $light  = $sun['civil_twilight_begin'];
+        $dark   = $sun['civil_twilight_end'];
+
+        if (($now > $light && $now < $dark)) {
+            //It's daytime
+            return true;
+        }else{
+        //It's daytime
+            return false;
+        }
+    }
     include("../../includes/connexionBd.php");
     $exist=0;
 ?>
+<style>
+    <?php
+        if(!Is_daytime()){
+    ?>
+    html{
+        background:rgba(0,0,100)!important,
+        color:white!important,
+    }
+    <?php
+        }
+    ?>
+</style>
 <script>
-    
-    function menuHeight() {
+  
+  addEventListener("load",()=>{
+        $("html, body").css({overflow:"hidden"})
+        $(".loader").hide().then($("body").show("100"))
+    });
 
-var menu = document.getElementById('mainmenu');
-menu.style.minHeight = screen.height;
+function menuHeight() {
+
+    var menu = document.getElementById('mainmenu');
+    menu.style.minHeight = screen.height;
 
     <?php 
 
@@ -50,22 +85,24 @@ menu.style.minHeight = screen.height;
 
         if($existS==0 && $existC==0){
             $text="Impossible d\'enregistrer un document s\'il n\'y a pas de client existant et  de secretaire existante.";
-            $footer="<a href=\'clients.php\?toast=0'>Enregistrer un client?</a>&nbsp;&nbsp;<a href=\'users.php\?toast=0'>Enregistrer une secretaire?</a>";
+            $footer="<a href=\'clients.php\'>Enregistrer un client?</a>&nbsp;&nbsp;<a href=\'users.php\'>Enregistrer une secretaire?</a>";
         }else{
             if($existS==1 && $existC==0){
                 $text="Impossible d\'enregistrer un document s\'il n\'y a pas de client existant.";
-                $footer="<a href=\'clients.php\?toast=0'>Enregistrer un client?</a>";
+                $footer="<a href=\'clients.php\'>Enregistrer un client?</a>";
             }else{
                 if($existS==0 && $existC==1){
                     $text="Impossible d\'enregistrer un document s\'il n\'y a pas de secretaire existante.";
-                    $footer="<a href=\'users.php\?toast=0'>Enregistrer une secretaire?</a>";
+                    $footer="<a href=\'users.php\'>Enregistrer une secretaire?</a>";
                 }
             }
         }
     if($existS==0 || $existC==0 ){
         $exist=1;
     }
-    if($existS==0 || $existC==0){
+    if(($existS==0 || $existC==0)){
+        if(!isset($_GET['toast'])){
+
     ?>
 
     Swal.fire({
@@ -81,19 +118,20 @@ menu.style.minHeight = screen.height;
         showCloseButton:true,
     })
 <?php 
+        }
     }
 ?>
 
-    <?php 
-        if(isset($_GET['toast'])){
-            if($_GET['toast']==0){
+<?php 
+        if(isset($_GET['toast']) &&  $existS==0){
     ?>
 
         Swal.fire({
             title: 'Oups...!',
             text: 'Aucun enregistrement pour cette section.',
             padding: '3em',
-            background: '#fff url(../../../images/workspace1_122059.png)',
+            //background: '#fff url(../../../images/workspace1_122059.png)',
+            background: '#fff',
             backdrop: `
                 rgba(0,25,123,0.4)
                 center left
@@ -104,9 +142,32 @@ menu.style.minHeight = screen.height;
         })
 
     <?php
-            }
+        }
+    ?>
+
+<?php 
+        if(isset($_GET['toast']) &&  $existC==0){
+    ?>
+
+        Swal.fire({
+            title: 'Oups...!',
+            text: 'Aucun enregistrement pour cette section.',
+            padding: '3em',
+            //background: '#fff url(../../../images/workspace1_122059.png)',
+            background: '#fff',
+            backdrop: `
+                rgba(0,25,123,0.4)
+                center left
+                no-repeat
+            `,
+            showConfirmButton:false,
+            showCloseButton:true,
+        })
+
+    <?php
         }
     ?>
 
 }
 </script>
+
