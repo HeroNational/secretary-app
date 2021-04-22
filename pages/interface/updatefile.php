@@ -150,7 +150,7 @@
                             <div class="ui top labeled">
                                 <div class="ui">Secretaire en charge du document</div>
                                 <select readonly name="" id="">
-                                    <option value="#">Manga</option>
+                                    <option value="#">secretary</option>
                                     <option value="#">Mbarga</option>
                                     <option value="#">Olinga</option>
                                 </select>
@@ -161,7 +161,7 @@
                             <div class="ui top labeled">
                                 <div class="ui">Secretaire en charge du document</div>
                                 <select readonly name="" id="">
-                                    <option value="#">Manga</option>
+                                    <option value="#">secretary</option>
                                     <option value="#">Mbarga</option>
                                     <option value="#">Olinga</option>
                                 </select>

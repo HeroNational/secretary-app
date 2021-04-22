@@ -1,6 +1,6 @@
 <?php
     try{
-        $bdd=new PDO("mysql:host=localhost;dbname=manga;","root","");
+        $bdd=new PDO("mysql:host=localhost;dbname=secretary;","root","");
     }catch(PDOException $e){
         $a=$e->getMessage();
         $a=explode("SQLSTATE[HY000] [1049] Unknown database",$e);

@@ -155,10 +155,10 @@
                                 style="margin:0px;width:24px;">
                                 <i class="ui trash icon"></i>
                             </button>
-                            <button title="Envoyer au proprietaire" class="ui teal button"
+                            <!-- <button title="Envoyer au proprietaire" class="ui teal button"
                                 style="margin:0px;width:24px;">
                                 <i class="ui send icon"></i>
-                            </button>
+                            </button> -->
                             <a href="updatefile.php?id=<?php echo $resultatT->idD; ?>" title="Modifier les informations"
                                 class="ui blue button" style="margin:0px;width:24px;">
                                 <i class="ui pencil icon"></i>
