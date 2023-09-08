@@ -1,6 +1,6 @@
 # Secretary-App
 
- ``Realise avec amour par ``**[Kratos237](http://github.com/kratos237/)**
+ ``Realise avec amour par ``**[Jacobin Daniel](http://github.com/heronational/)**
 
 ># Comment-ca marche?
 
